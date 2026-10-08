@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejarah - Ruang IPS</title>
+    <title>Bab 1 - Pengantar Ilmu Sejarah</title>
 
     <style>
         * {
@@ -22,90 +22,209 @@
             background: #172554;
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
         }
 
         header h1 {
-            font-size: 36px;
-            margin-bottom: 8px;
+            font-size: 28px;
+            margin-bottom: 6px;
         }
 
         header p {
-            font-size: 17px;
+            font-size: 15px;
             opacity: 0.9;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
+            max-width: 800px;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
         .back {
             display: inline-block;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #2563eb;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
+        .back:hover {
+            text-decoration: underline;
         }
 
-        .title h2 {
-            font-size: 28px;
+        .quiz-info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-info h2 {
+            font-size: 22px;
             margin-bottom: 8px;
         }
 
-        .title p {
+        .quiz-info p {
             color: #64748b;
+            font-size: 14px;
         }
 
-        .chapters {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .chapter {
+        .question {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 22px;
+            border-radius: 12px;
             box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-        }
-
-        .chapter h3 {
-            margin-bottom: 10px;
-        }
-
-        .chapter p {
-            color: #64748b;
             margin-bottom: 18px;
+        }
+
+        .question h3 {
+            font-size: 16px;
+            margin-bottom: 14px;
             line-height: 1.5;
         }
 
-        .button {
+        .question .num {
+            color: #2563eb;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .options label {
+            display: block;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
+        }
+
+        .options label:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .options label.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+        }
+
+        .options label.wrong {
+            background: #fee2e2;
+            border-color: #dc2626;
+        }
+
+        .options label.disabled {
+            cursor: default;
+        }
+
+        .feedback {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+            border-left: 4px solid #16a34a;
+        }
+
+        .feedback.wrong {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #dc2626;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn {
             display: inline-block;
             background: #2563eb;
             color: white;
-            padding: 10px 18px;
+            padding: 12px 26px;
+            border: none;
             border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
             text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .btn.secondary {
+            background: #64748b;
+            margin-left: 10px;
+        }
+
+        .btn.secondary:hover {
+            background: #475569;
+        }
+
+        .result {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: #172554;
+        }
+
+        .result .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 15px 0;
+        }
+
+        .result p {
+            color: #64748b;
+            margin-bottom: 20px;
         }
 
         footer {
             text-align: center;
             padding: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
             color: #64748b;
         }
 
-        @media (max-width: 650px) {
-            .chapters {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 500px) {
+            header h1 { font-size: 22px; }
+            .question h3 { font-size: 15px; }
         }
     </style>
 </head>
@@ -113,52 +232,257 @@
 <body>
 
 <header>
-    <h1>📜 SEJARAH</h1>
-    <p>Bank Soal & Simulasi Sejarah</p>
+    <h1>📜 Bab 1 — Pengantar Ilmu Sejarah</h1>
+    <p>Latihan Soal Pilihan Ganda</p>
 </header>
 
 <main class="container">
 
-    <a href="index.html" class="back">← Kembali ke Ruang IPS</a>
+    <a href="sejarah.html" class="back">← Kembali ke Daftar Bab</a>
 
-    <section class="title">
-        <h2>Pilih Bab</h2>
-        <p>Pilih materi yang ingin kamu latih.</p>
-    </section>
+    <div class="quiz-info">
+        <h2>10 Soal Pilihan Ganda</h2>
+        <p>Pilih satu jawaban yang paling tepat, lalu klik "Periksa Jawaban".</p>
+    </div>
 
-    <section class="chapters">
+    <form id="quizForm">
 
-        <div class="chapter">
-            <h3>Bab 1 — Pengantar Ilmu Sejarah</h3>
-            <p>Latihan soal mengenai hakikat, konsep, sumber, dan cara berpikir sejarah.</p>
-           <a href="sejarah-bab1.html" class="button">Mulai Latihan</a>
+        <div class="question" data-answer="B">
+            <h3><span class="num">1.</span> Kata "sejarah" berasal dari bahasa Arab, yaitu <em>syajaratun</em>, yang berarti...</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="A"> A. Batu</label>
+                <label><input type="radio" name="q1" value="B"> B. Pohon</label>
+                <label><input type="radio" name="q1" value="C"> C. Tulisan</label>
+                <label><input type="radio" name="q1" value="D"> D. Peristiwa</label>
+            </div>
+            <div class="feedback"></div>
         </div>
 
-        <div class="chapter">
-            <h3>Bab 2 — Kehidupan Prasejarah</h3>
-            <p>Latihan soal mengenai kehidupan manusia pada masa prasejarah.</p>
-            <a href="#" class="button">Mulai Latihan</a>
+        <div class="question" data-answer="C">
+            <h3><span class="num">2.</span> Sejarah sebagai ilmu memiliki ciri-ciri berikut, kecuali...</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="A"> A. Empiris</label>
+                <label><input type="radio" name="q2" value="B"> B. Memiliki objek</label>
+                <label><input type="radio" name="q2" value="C"> C. Bersifat subjektif mutlak</label>
+                <label><input type="radio" name="q2" value="D"> D. Memiliki teori</label>
+            </div>
+            <div class="feedback"></div>
         </div>
 
-        <div class="chapter">
-            <h3>Bab 3 — Peradaban Awal</h3>
-            <p>Latihan soal mengenai perkembangan peradaban awal manusia.</p>
-            <a href="#" class="button">Mulai Latihan</a>
+        <div class="question" data-answer="A">
+            <h3><span class="num">3.</span> Sumber sejarah yang berasal dari benda atau peninggalan fisik disebut sumber...</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="A"> A. Primer</label>
+                <label><input type="radio" name="q3" value="B"> B. Sekunder</label>
+                <label><input type="radio" name="q3" value="C"> C. Tersier</label>
+                <label><input type="radio" name="q3" value="D"> D. Lisan</label>
+            </div>
+            <div class="feedback"></div>
         </div>
 
-        <div class="chapter">
-            <h3>Bab 4 — Hindu-Buddha</h3>
-            <p>Latihan soal mengenai perkembangan Hindu-Buddha di Indonesia.</p>
-            <a href="#" class="button">Mulai Latihan</a>
+        <div class="question" data-answer="B">
+            <h3><span class="num">4.</span> Berpikir kronologis dalam sejarah berarti berpikir berdasarkan...</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="A"> A. Tempat kejadian</label>
+                <label><input type="radio" name="q4" value="B"> B. Urutan waktu</label>
+                <label><input type="radio" name="q4" value="C"> C. Sebab akibat</label>
+                <label><input type="radio" name="q4" value="D"> D. Pelaku sejarah</label>
+            </div>
+            <div class="feedback"></div>
         </div>
 
-    </section>
+        <div class="question" data-answer="D">
+            <h3><span class="num">5.</span> Sinkronik dalam sejarah berarti mempelajari peristiwa...</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="A"> A. Secara urut waktu</label>
+                <label><input type="radio" name="q5" value="B"> B. Hanya masa depan</label>
+                <label><input type="radio" name="q5" value="C"> C. Secara sebab akibat</label>
+                <label><input type="radio" name="q5" value="D"> D. Meluas dalam ruang, terbatas dalam waktu</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-answer="C">
+            <h3><span class="num">6.</span> Berikut ini yang termasuk sumber sejarah sekunder adalah...</h3>
+            <div class="options">
+                <label><input type="radio" name="q6" value="A"> A. Prasasti</label>
+                <label><input type="radio" name="q6" value="B"> B. Candi</label>
+                <label><input type="radio" name="q6" value="C"> C. Buku sejarah karya sejarawan</label>
+                <label><input type="radio" name="q6" value="D"> D. Foto asli peristiwa</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-answer="A">
+            <h3><span class="num">7.</span> Ilmu yang membantu sejarah dalam menentukan usia benda purbakala adalah...</h3>
+            <div class="options">
+                <label><input type="radio" name="q7" value="A"> A. Arkeologi</label>
+                <label><input type="radio" name="q7" value="B"> B. Geografi</label>
+                <label><input type="radio" name="q7" value="C"> C. Ekonomi</label>
+                <label><input type="radio" name="q7" value="D"> D. Sosiologi</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-answer="B">
+            <h3><span class="num">8.</span> Sejarah sebagai peristiwa bersifat...</h3>
+            <div class="options">
+                <label><input type="radio" name="q8" value="A"> A. Dapat diulang</label>
+                <label><input type="radio" name="q8" value="B"> B. Terjadi sekali dan tidak dapat diulang</label>
+                <label><input type="radio" name="q8" value="C"> C. Selalu sama</label>
+                <label><input type="radio" name="q8" value="D"> D. Tidak nyata</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-answer="D">
+            <h3><span class="num">9.</span> Langkah pertama dalam metode penelitian sejarah adalah...</h3>
+            <div class="options">
+                <label><input type="radio" name="q9" value="A"> A. Kritik sumber</label>
+                <label><input type="radio" name="q9" value="B"> B. Interpretasi</label>
+                <label><input type="radio" name="q9" value="C"> C. Historiografi</label>
+                <label><input type="radio" name="q9" value="D"> D. Heuristik (pengumpulan sumber)</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-answer="C">
+            <h3><span class="num">10.</span> Penulisan kisah sejarah berdasarkan fakta dan sumber yang ada disebut...</h3>
+            <div class="options">
+                <label><input type="radio" name="q10" value="A"> A. Mitos</label>
+                <label><input type="radio" name="q10" value="B"> B. Legenda</label>
+                <label><input type="radio" name="q10" value="C"> C. Historiografi</label>
+                <label><input type="radio" name="q10" value="D"> D. Dongeng</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+    </form>
+
+    <div class="btn-group">
+        <button type="button" class="btn" id="checkBtn">Periksa Jawaban</button>
+        <button type="button" class="btn secondary" id="resetBtn">Ulangi</button>
+    </div>
+
+    <div class="result" id="result">
+        <h2>🎉 Hasil Latihan</h2>
+        <div class="score" id="scoreText">0 / 10</div>
+        <p id="messageText"></p>
+        <a href="sejarah.html" class="btn">Kembali ke Daftar Bab</a>
+    </div>
 
 </main>
 
 <footer>
     © 2026 Ruang IPS
 </footer>
+
+<script>
+    const correctAnswers = {
+        q1: "B", q2: "C", q3: "A", q4: "B", q5: "D",
+        q6: "C", q7: "A", q8: "B", q9: "D", q10: "C"
+    };
+
+    const explanations = {
+        q1: "Kata syajaratun berarti pohon, melambangkan silsilah atau keturunan.",
+        q2: "Sejarah sebagai ilmu bersifat objektif, bukan subjektif mutlak.",
+        q3: "Sumber primer adalah sumber asli dari zaman peristiwa itu terjadi.",
+        q4: "Kronologis artinya berdasarkan urutan waktu kejadian.",
+        q5: "Sinkronik artinya meluas dalam ruang, tetapi terbatas dalam waktu.",
+        q6: "Buku sejarah modern termasuk sumber sekunder karena tidak sezaman.",
+        q7: "Arkeologi mempelajari benda purbakala untuk menentukan usia.",
+        q8: "Peristiwa sejarah terjadi sekali (einmalig) dan tidak bisa diulang.",
+        q9: "Langkah metode sejarah: heuristik, kritik, interpretasi, historiografi.",
+        q10: "Historiografi adalah penulisan sejarah berdasarkan fakta dan sumber."
+    };
+
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+    const scoreText = document.getElementById("scoreText");
+    const messageText = document.getElementById("messageText");
+
+    checkBtn.addEventListener("click", () => {
+        let score = 0;
+        let unanswered = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            const qName = "q" + i;
+            const selected = document.querySelector('input[name="' + qName + '"]:checked');
+            const questionDiv = document.querySelectorAll(".question")[i - 1];
+            const feedback = questionDiv.querySelector(".feedback");
+            const labels = questionDiv.querySelectorAll("label");
+
+            labels.forEach(function (l) {
+                l.classList.remove("correct", "wrong", "disabled");
+            });
+            feedback.classList.remove("show", "correct", "wrong");
+
+            if (!selected) {
+                unanswered++;
+                feedback.textContent = "⚠️ Belum dijawab.";
+                feedback.classList.add("show", "wrong");
+                continue;
+            }
+
+            labels.forEach(function (l) {
+                l.classList.add("disabled");
+                l.querySelector("input").disabled = true;
+            });
+
+            if (selected.value === correctAnswers[qName]) {
+                score++;
+                selected.parentElement.classList.add("correct");
+                feedback.textContent = "✅ Benar! " + explanations[qName];
+                feedback.classList.add("show", "correct");
+            } else {
+                selected.parentElement.classList.add("wrong");
+                labels.forEach(function (l) {
+                    if (l.querySelector("input").value === correctAnswers[qName]) {
+                        l.classList.add("correct");
+                    }
+                });
+                feedback.textContent = "❌ Salah. Jawaban benar: " + correctAnswers[qName] + ". " + explanations[qName];
+                feedback.classList.add("show", "wrong");
+            }
+        }
+
+        if (unanswered > 0) {
+            alert("Masih ada " + unanswered + " soal yang belum dijawab.");
+            return;
+        }
+
+        scoreText.textContent = score + " / 10";
+
+        let msg = "";
+        if (score === 10) msg = "Sempurna! Kamu luar biasa! 🏆";
+        else if (score >= 8) msg = "Hebat! Pertahankan! 👍";
+        else if (score >= 6) msg = "Bagus, terus belajar ya! 📚";
+        else if (score >= 4) msg = "Perlu latihan lagi. Semangat! 💪";
+        else msg = "Ayo baca materi lagi dan coba ulang! 🔥";
+
+        messageText.textContent = msg;
+        result.classList.add("show");
+        result.scrollIntoView({ behavior: "smooth" });
+    });
+
+    resetBtn.addEventListener("click", () => {
+        document.getElementById("quizForm").reset();
+
+        document.querySelectorAll(".question").forEach(function (q) {
+            q.querySelectorAll("label").forEach(function (l) {
+                l.classList.remove("correct", "wrong", "disabled");
+                l.querySelector("input").disabled = false;
+            });
+            const fb = q.querySelector(".feedback");
+            fb.classList.remove("show", "correct", "wrong");
+            fb.textContent = "";
+        });
+
+        result.classList.remove("show");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
 
 </body>
 </html>
