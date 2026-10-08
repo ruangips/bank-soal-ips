@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sejarah Bab 1 - Ruang IPS</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+
+    header {
+        background: #172554;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin-bottom: 8px;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    .info {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .question {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .question-number {
+        color: #2563eb;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .question-text {
+        font-size: 19px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .option {
+        display: block;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        padding: 14px;
+        border-radius: 9px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .option:hover {
+        background: #eff6ff;
+    }
+
+    .option input {
+        margin-right: 10px;
+    }
+
+    button {
+        border: none;
+        background: #2563eb;
+        color: white;
+        padding: 13px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    #result {
+        display: none;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .score {
+        font-size: 40px;
+        font-weight: bold;
+        color: #2563eb;
+        margin: 15px 0;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>RUANG IPS</h1>
+    <p>Sejarah — Bab 1: Pengantar Ilmu Sejarah</p>
+</header>
+
+<div class="container">
+
+    <div class="info">
+        <strong>Latihan Percobaan</strong>
+        <p style="margin-top:8px;">
+            Versi uji coba sistem bank soal Ruang IPS.
+        </p>
+    </div>
+
+    <div id="quiz"></div>
+
+    <button onclick="checkAnswer()">Selesai & Lihat Nilai</button>
+
+    <div id="result">
+        <h2>Hasil Latihan</h2>
+        <div class="score" id="score"></div>
+        <p id="correct"></p>
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+    question: "Istilah sejarah berasal dari kata Arab syajaratun yang berarti...",
+    options: [
+        "Peristiwa",
+        "Pohon",
+        "Waktu",
+        "Cerita"
+    ],
+    answer: 1
+},
+
+{
+    question: "Tokoh yang dikenal sebagai Bapak Sejarah adalah...",
+    options: [
+        "Aristoteles",
+        "Herodotus",
+        "Ibnu Khaldun",
+        "Kuntowijoyo"
+    ],
+    answer: 1
+},
+
+{
+    question: "Cara berpikir sejarah yang memanjang dalam waktu disebut...",
+    options: [
+        "Sinkronis",
+        "Spasial",
+        "Diakronis",
+        "Tematis"
+    ],
+    answer: 2
+},
+
+{
+    question: "Sumber sejarah yang berasal langsung dari pelaku atau saksi suatu peristiwa disebut...",
+    options: [
+        "Sumber primer",
+        "Sumber sekunder",
+        "Sumber tersier",
+        "Sumber tambahan"
+    ],
+    answer: 0
+},
+
+{
+    question: "Tahap penelitian sejarah yang bertujuan mencari dan mengumpulkan sumber disebut...",
+    options: [
+        "Interpretasi",
+        "Historiografi",
+        "Heuristik",
+        "Kritik"
+    ],
+    answer: 2
+}
+
+];
+
+function loadQuiz() {
+
+    const quiz = document.getElementById("quiz");
+
+    questions.forEach((q, index) => {
+
+        let html = `
+        <div class="question" style="margin-bottom:20px;">
+            <div class="question-number">
+                Soal ${index + 1}
+            </div>
+
+            <div class="question-text">
+                ${q.question}
+            </div>
+        `;
+
+        q.options.forEach((option, i) => {
+
+            html += `
+            <label class="option">
+                <input type="radio" name="question${index}" value="${i}">
+                ${option}
+            </label>
+            `;
+
+        });
+
+        html += `</div>`;
+
+        quiz.innerHTML += html;
+
+    });
+
+}
+
+function checkAnswer() {
+
+    let correct = 0;
+
+    questions.forEach((q, index) => {
+
+        const selected =
+            document.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+        if (selected && Number(selected.value) === q.answer) {
+            correct++;
+        }
+
+    });
+
+    const score = Math.round(
+        (correct / questions.length) * 100
+    );
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("correct").textContent =
+        `Jawaban benar: ${correct} dari ${questions.length} soal.`;
+
+    document.getElementById("result").style.display =
+        "block";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+
+}
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
